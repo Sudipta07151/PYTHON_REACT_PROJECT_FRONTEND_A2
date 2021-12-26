@@ -1,3 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{
+  overflow-x: hidden;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +17,29 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.background_color{
+  @apply bg-lime-300
+}
+
+.link_tabs{
+  @apply hover:text-green-500 hover:rotate-2 font-extralight mx-4 flex flex-row items-center justify-evenly;
+}
+
+
+.login_signup {
+  @apply text-white text-xl font-thin bg-green-700 mx-2 px-2 py-1 shadow-sm shadow-green-700 hover:text-slate-100 hover:bg-green-600;
+}
+
+nav a.active:hover {
+  color: white;
+}
+
+nav a.active {
+  color: white;
+  background-color: green;
+  border-radius: 2px;
+  padding: 8px;
+  transform: rotate(-2deg);
 }
