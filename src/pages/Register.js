@@ -1,12 +1,16 @@
 import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [ree_password, setReePassword] = useState("");
   const [user, setUser] = useState("");
+
+  const navigate=useNavigate();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -37,7 +41,28 @@ export default function Register() {
       toast("DONE", {
         autoClose: 1500,
       });
-      console.log(data);
+      const options = {
+        url: 'http://127.0.0.1:8000/adduser/',
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        data: {
+          username: user,
+          email: email,
+          password:password
+        }
+      };
+      
+      axios(options)
+        .then(response => {
+          console.log(response.status);
+          setTimeout(()=>{
+            navigate('/');
+          },2000)
+        });
+    console.log(data);
     } else {
       toast("FAILED", {
         autoClose: 1500,

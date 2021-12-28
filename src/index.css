@@ -43,3 +43,11 @@ nav a.active {
   padding: 8px;
   transform: rotate(-2deg);
 }
+
+.burger_login_signup{
+ @apply bg-green-400 m-1 p-1 rounded-sm text-white font-bold hover:bg-green-500
+}
+
+.burger_link_tabs{
+  @apply text-white
+}

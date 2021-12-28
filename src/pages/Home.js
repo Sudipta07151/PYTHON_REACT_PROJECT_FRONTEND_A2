@@ -7,7 +7,7 @@ import { useFetchMenuData } from "../hooks/useFetchMenusData"
 export default function Home() {
 
     // const {data}=useFetchMenuData('http://127.0.0.1:5000/');    
-    const {data}=useFetchMenuData('http://127.0.0.1:8000/');
+    const {data}=useFetchMenuData('http://127.0.0.1:8000/alluserlist/');
     console.log(data);
     return (
         <div className="container h-screen mx-auto flex flex-col items-center justify-center">
@@ -19,8 +19,10 @@ export default function Home() {
                 data&&data.map(element=>{
                     return(
                     <ul>
-                        <li>{element.author}</li>
-                        <li>{element.description}</li>
+                        <li>{element.id}</li>
+                        <li>{element.username}</li>
+                        <li>{element.email}</li>
+                        <li>{element.password}</li>
                     </ul>);
                 })
             }

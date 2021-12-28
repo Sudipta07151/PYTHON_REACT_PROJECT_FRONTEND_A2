@@ -140,7 +140,7 @@ export default function Navbar() {
         className="hidden lg:hidden rounded-lg drawer h-96 absolute top-20 right-1 z-40"
         ref={side_drawer}
       >
-        <div>
+        <div className=" bg-black/[0.6] p-4">
           <div className="w-full flex flex-row items-center justify-center">
             <AvatarMenu />
           </div>
