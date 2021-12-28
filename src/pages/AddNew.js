@@ -1,17 +1,20 @@
 import { useState } from "react";
 
+import AddSnippet from "../components/AddSnippet";
+
 export default function AddNew() {
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [code, setCode] = useState(false);
   const [codeSnippet, setCodeSnippet] = useState("");
-
+  const [description, setDescription] = useState("");
   const resetForm = (event) => {
     setName("");
     setDate("");
     setTitle("");
     setCodeSnippet("");
+    setDescription("");
     setCode(false);
   };
 
@@ -52,6 +55,15 @@ export default function AddNew() {
             value={name}
           />
         </label>
+        <label className="w-full">
+          <span>DESCRIPTION :</span>
+          <textarea
+            className="inline-block align-top border-4 border-green-500 w-full h-64 break-words"
+            type="text"
+            onChange={(event) => setDescription(event.target.value)}
+            value={description}
+          />
+        </label>
         <label htmlFor="title" className="w-full">
           <span>Date Added </span>
           <input
@@ -75,12 +87,13 @@ export default function AddNew() {
         {code && (
           <label className="w-full">
             <span>CODE SNIPPET :</span>
-            <input
+            {/* <textarea
               className="border-4 border-green-500 w-full h-64"
               type="text"
               onChange={(event) => setCodeSnippet(event.target.value)}
               value={codeSnippet}
-            />
+            /> */}
+            <AddSnippet className="border-4 border-green-500 w-full h-64" />
           </label>
         )}
         <p
