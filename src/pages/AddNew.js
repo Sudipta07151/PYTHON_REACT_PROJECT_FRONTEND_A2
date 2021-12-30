@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import AddSnippet from "../components/AddSnippet";
 
@@ -9,6 +11,9 @@ export default function AddNew() {
   const [code, setCode] = useState(false);
   const [codeSnippet, setCodeSnippet] = useState("");
   const [description, setDescription] = useState("");
+
+  const navigate = useNavigate();
+
   const resetForm = (event) => {
     setName("");
     setDate("");
@@ -18,6 +23,10 @@ export default function AddNew() {
     setCode(false);
   };
 
+  const handleSaveCodeSnippet = (data) => {
+    setCodeSnippet(data);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = {
@@ -25,14 +34,37 @@ export default function AddNew() {
       name,
       date,
       code,
+      description,
       codeSnippet,
-      id: Math.floor(Math.random() * 1000),
+      id: Math.floor(Math.random() * 5) + 1,
     };
+    const options = {
+      url: "http://127.0.0.1:8000/addmodel/",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      data: {
+        user: Math.floor(Math.random() * 5) + 1,
+        title: title,
+        code: code,
+        snippet: codeSnippet,
+        description: description,
+      },
+    };
+
+    axios(options).then((response) => {
+      console.log(response.status);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    });
     resetForm();
     console.log(formData);
   };
   return (
-    <div className="w-screen h-screen pt-40 flex flex-row items-center justify-center font-mono text-xl">
+    <div className="w-screen pt-40 flex flex-row items-center justify-center font-mono text-xl mt-20">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-evenly h-screen  w-4/5 "
@@ -93,16 +125,19 @@ export default function AddNew() {
               onChange={(event) => setCodeSnippet(event.target.value)}
               value={codeSnippet}
             /> */}
-            <AddSnippet className="border-4 border-green-500 w-full h-64" />
+            <AddSnippet
+              className="border-4 border-green-500 w-full h-64"
+              handleSaveData={handleSaveCodeSnippet}
+            />
           </label>
         )}
         <p
-          className="bg-yellow-400 text-center cursor-pointer p-2 rounded-md"
+          className="bg-yellow-400 text-center cursor-pointer p-2 rounded-md m-2"
           onClick={resetForm}
         >
           RESET FORM
         </p>
-        <button className="bg-green-400 text-center cursor-pointer p-2 rounded-md mb-20">
+        <button className="bg-green-400 text-center cursor-pointer p-2 rounded-md m-2">
           CREATE
         </button>
       </form>

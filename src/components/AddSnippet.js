@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
-export default function App() {
+export default function App({handleSaveData}) {
   const editorRef = useRef(null);
   const log = () => {
+    editorRef.preventDefault();
     if (editorRef.current) {
+      handleSaveData(editorRef.current.getContent());
       console.log(editorRef.current.getContent());
     }
   };
@@ -31,7 +33,7 @@ export default function App() {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-      <button onClick={log}>Log editor content</button>
+      <button className="p-2 m-4 bg-blue-400 text-white font-light" onClick={log}>Add Code</button>
     </>
   );
 }

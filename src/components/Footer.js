@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
       <div>
-        <footer class="text-center lg:text-left">
+        <footer class="text-center lg:text-left mt-56">
           <div class="flex justify-center items-center lg:justify-between p-6">
             <div class="mr-12 hidden lg:block">
               <span>Get connected with us on social networks:</span>
