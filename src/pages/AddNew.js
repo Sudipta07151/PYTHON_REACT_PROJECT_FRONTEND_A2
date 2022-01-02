@@ -36,7 +36,8 @@ export default function AddNew() {
       code,
       description,
       codeSnippet,
-      id: Math.floor(Math.random() * 5) + 1,
+      // id: Math.floor(Math.random() * 5) + 1,
+      id: 23,
     };
     const options = {
       url: "http://127.0.0.1:8000/addmodel/",
@@ -44,9 +45,11 @@ export default function AddNew() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
+        "Authorization":"JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQxMTQ1Mzc5LCJpYXQiOjE2NDExNDUwNzksImp0aSI6ImE1ZjNjMTNiZTg5NTRkNzE4YzNhYWRkMzc4NDM1NDc5IiwidXNlcl9pZCI6MjR9.F2BwLAcheyQovM0Slta9UzCWoEzEQxrXIrl6cR"
       },
       data: {
-        user: Math.floor(Math.random() * 5) + 1,
+        // user: Math.floor(Math.random() * 5) + 1,
+        user:24,
         title: title,
         code: code,
         snippet: codeSnippet,

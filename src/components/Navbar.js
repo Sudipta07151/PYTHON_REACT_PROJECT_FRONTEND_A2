@@ -131,6 +131,9 @@ export default function Navbar() {
           <button className="login_signup" onClick={signHandle}>
             LOGIN
           </button>
+          {/* <button className="login_signup" onClick={signHandle}>
+            LOGOUT
+          </button> */}
         </div>
         <div className=" p-2 basis-1/4">
           <AvatarMenu />
@@ -162,6 +165,9 @@ export default function Navbar() {
             <button className="burger_login_signup" onClick={signHandle}>
               LOGIN
             </button>
+            {/* <button className="burger_login_signup" onClick={registerHandle}>
+              LOGOUT
+            </button> */}
           </div>
         </div>
       </div>
