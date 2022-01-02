@@ -4,7 +4,6 @@ import { Editor } from "@tinymce/tinymce-react";
 export default function App({handleSaveData}) {
   const editorRef = useRef(null);
   const log = () => {
-    editorRef.preventDefault();
     if (editorRef.current) {
       handleSaveData(editorRef.current.getContent());
       console.log(editorRef.current.getContent());
