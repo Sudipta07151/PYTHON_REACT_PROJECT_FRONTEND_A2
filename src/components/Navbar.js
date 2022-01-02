@@ -33,7 +33,7 @@ export default function Navbar() {
     <div className="background_color px-4 fixed top-0 left-0 right-0 w-screen h-20 flex items-center justify-between flex-row">
       <div className="w-screen lg:basis-1/12 flex flex-row items-center justify-between">
         <div
-          className="logo_text text-4xl font-extrabold font-logofont"
+          className="logo_text text-4xl font-extrabold font-logofont cursor-pointer text-green-900 hover:text-green-700"
           onClick={handleClickToHome}
         >
           BLOG ML
