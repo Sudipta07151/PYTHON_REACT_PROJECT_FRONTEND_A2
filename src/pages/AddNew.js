@@ -45,7 +45,7 @@ export default function AddNew() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
-        "Authorization":"JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQxMTQ1Mzc5LCJpYXQiOjE2NDExNDUwNzksImp0aSI6ImE1ZjNjMTNiZTg5NTRkNzE4YzNhYWRkMzc4NDM1NDc5IiwidXNlcl9pZCI6MjR9.F2BwLAcheyQovM0Slta9UzCWoEzEQxrXIrl6cR"
+        //"Authorization":"JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQxMTQ1Mzc5LCJpYXQiOjE2NDExNDUwNzksImp0aSI6ImE1ZjNjMTNiZTg5NTRkNzE4YzNhYWRkMzc4NDM1NDc5IiwidXNlcl9pZCI6MjR9.F2BwLAcheyQovM0Slta9UzCWoEzEQxrXIrl6cR"
       },
       data: {
         // user: Math.floor(Math.random() * 5) + 1,

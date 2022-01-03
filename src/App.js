@@ -8,6 +8,7 @@ import AddNew from "./pages/AddNew";
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import About from "./pages/About";
+import ModelDetail from "./pages/ModelDetail";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
+        <Route path="/model/:id" element={<ModelDetail />} />
       </Routes>
       <Footer />
     </div>
