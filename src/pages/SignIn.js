@@ -2,9 +2,15 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const url = "http://localhost:8000/api/token/";
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -22,10 +28,24 @@ export default function SignIn() {
     toast("DONE", {
       autoClose: 1500,
     });
-    fetch("http://127.0.0.1:5000/login", {
+    const options = {
+      url,
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      data: {
+        email: email,
+        password: password,
+      },
+    };
+
+    axios(options).then((response) => {
+      console.log(response.status);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     });
     console.log(data);
   };

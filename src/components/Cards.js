@@ -14,7 +14,7 @@ export default function Cards({ element }) {
       className=" bg-green-100 overflow-hidden rounded-md p-4 shadow-md m-4"
     >
       <p className="text-lg font-black">{element.title.substring(0, 100)}</p>
-      <p className="text-left bg-white p-4 text-base font-sans font-medium">
+      <p className=" text-left bg-white p-4 text-base font-sans font-medium">
         {element.description.substring(0, 100)}
       </p>
       <pre className=" bg-green-900 text-white font-semibold text-left p-4">
