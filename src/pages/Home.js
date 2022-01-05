@@ -6,9 +6,11 @@ import Cardlist from "../components/Cardlist";
 import Searchbar from "../components/SearchBar";
 
 export default function Home() {
-  // const {data}=useFetchMenuData('http://127.0.0.1:5000/');
+ 
   const { data } = useFetchMenuData("http://127.0.0.1:8000/allmodellist/");
   console.log(data);
+
+  
   const nodata =
     "container h-screen mx-auto flex flex-col items-center justify-center";
   const datapresent =

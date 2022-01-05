@@ -11,7 +11,7 @@ export default function Cards({ element }) {
       console.log(element.id);
     }}
       key={element.id}
-      className=" bg-green-100 overflow-hidden rounded-md p-4 shadow-md m-4"
+      className=" bg-green-100 overflow-hidden rounded-md p-4 shadow-md m-4 hover:bg-green-300"
     >
       <p className="text-lg font-black">{element.title.substring(0, 100)}</p>
       <p className=" text-left bg-white p-4 text-base font-sans font-medium">

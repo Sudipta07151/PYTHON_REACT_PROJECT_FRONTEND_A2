@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 
 const useFetchMenuData = (url) => {
   const [data, setData] = useState(null);
+  
   useEffect(() => {
     const fetchData = async () => {
         try{
-            const response = await fetch(url);
+            const response = await fetch(url,{
+                method:'GET',
+                headers:{
+                    'Authorization':'JWT '+localStorage.getItem('access_token')
+                }
+            });
             if(!response.ok){
                 throw new Error('UNABLE TO FETCH DATA');
             }

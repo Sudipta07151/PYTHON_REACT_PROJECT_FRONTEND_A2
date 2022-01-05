@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import jwt_decode from "jwt-decode";
 
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
 import postData from "../functions/postData";
+
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -20,6 +23,8 @@ export default function SignIn() {
     setPassword(e.target.value);
   };
 
+  const {dispatch}=useAuthContext();
+  
   const handleSubmit = async() => {
     const data = {
       email,
@@ -27,6 +32,7 @@ export default function SignIn() {
     };
     setEmail("");
     setPassword("");
+
     // const options = {
     //   url,
     //   method: "POST",
@@ -50,9 +56,13 @@ export default function SignIn() {
     //   }, 2000);
     // });
 
+
     const response=await postData(url,data);
     console.log(response);
     console.log(data);
+    const user=jwt_decode(localStorage.getItem('access_token'));
+    dispatch({type:'LOGIN',payload:user})
+    navigate('/');
   };
 
   return (

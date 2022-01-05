@@ -1,14 +1,18 @@
-import { useRef } from "react";
+import { useRef,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { NavLink } from "react-router-dom";
 
 import AvatarMenu from "./AvatarMenu";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 export default function Navbar() {
+  const { user } = useAuthContext();
+
   const navigate = useNavigate();
   const handleClickToHome = () => {
-    navigate('/home');
+    navigate("/home");
   };
   const side_drawer = useRef();
   const handleClick = (e) => {
@@ -18,7 +22,7 @@ export default function Navbar() {
       side_drawer.current.classList.add("hidden");
     }
   };
-
+  
   const signHandle = () => {
     handleClick();
     navigate("/login");
@@ -125,15 +129,21 @@ export default function Navbar() {
       </div>
       <div className="hidden lg:flex flex-row basis-2/12 justify-end items-center gap-2">
         <div className="bg-white p-3 rounded-md shadow-md shadow-yellow-400 flex flex-row basis-2/3">
-          <button className="login_signup" onClick={registerHandle}>
-            SIGNUP
-          </button>
-          <button className="login_signup" onClick={signHandle}>
-            LOGIN
-          </button>
-          {/* <button className="login_signup" onClick={signHandle}>
-            LOGOUT
-          </button> */}
+          {!user && (
+            <>
+              <button className="login_signup" onClick={registerHandle}>
+                SIGNUP
+              </button>
+              <button className="login_signup" onClick={signHandle}>
+                LOGIN
+              </button>
+            </>
+          )}
+          {user && (
+            <button className="login_signup" onClick={signHandle}>
+              LOGOUT
+            </button>
+          )}
         </div>
         <div className=" p-2 basis-1/4">
           <AvatarMenu />
