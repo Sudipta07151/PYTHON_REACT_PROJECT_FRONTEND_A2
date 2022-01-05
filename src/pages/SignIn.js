@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import postData from "../functions/postData";
+
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,35 +20,38 @@ export default function SignIn() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     const data = {
       email,
       password,
     };
     setEmail("");
     setPassword("");
-    const options = {
-      url,
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      data: {
-        email: email,
-        password: password,
-      },
-    };
+    // const options = {
+    //   url,
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json;charset=UTF-8",
+    //   },
+    //   data: {
+    //     email: email,
+    //     password: password,
+    //   },
+    // };
 
-    axios(options).then((response) => {
-      console.log(response.status);
-      toast("DONE", {
-        autoClose: 1500,
-      });  
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
-    });
+    // axios(options).then((response) => {
+    //   console.log(response.status);
+    //   toast("DONE", {
+    //     autoClose: 1500,
+    //   });  
+    //   setTimeout(() => {
+    //     navigate("/");
+    //   }, 2000);
+    // });
+
+    const response=await postData(url,data);
+    console.log(response);
     console.log(data);
   };
 

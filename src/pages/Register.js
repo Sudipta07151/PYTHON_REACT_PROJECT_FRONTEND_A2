@@ -2,7 +2,7 @@ import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ export default function Register() {
   const [ree_password, setReePassword] = useState("");
   const [user, setUser] = useState("");
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -38,31 +38,30 @@ export default function Register() {
       setUser("");
       setEmail("");
       setPassword("");
-      toast("DONE", {
-        autoClose: 1500,
-      });
       const options = {
-        url: 'http://127.0.0.1:8000/adduser/',
-        method: 'POST',
+        url: "http://127.0.0.1:8000/adduser/",
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json;charset=UTF-8'
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
         },
         data: {
           username: user,
           email: email,
-          password:password
-        }
+          password: password,
+        },
       };
-      
-      axios(options)
-        .then(response => {
-          console.log(response.status);
-          setTimeout(()=>{
-            navigate('/');
-          },2000)
+
+      axios(options).then((response) => {
+        console.log(response.status);
+        toast("DONE", {
+          autoClose: 1500,
         });
-    console.log(data);
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      });
+      console.log(data);
     } else {
       toast("FAILED", {
         autoClose: 1500,
