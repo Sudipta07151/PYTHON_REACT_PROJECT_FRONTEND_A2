@@ -25,9 +25,6 @@ export default function SignIn() {
     };
     setEmail("");
     setPassword("");
-    toast("DONE", {
-      autoClose: 1500,
-    });
     const options = {
       url,
       method: "POST",
@@ -43,6 +40,9 @@ export default function SignIn() {
 
     axios(options).then((response) => {
       console.log(response.status);
+      toast("DONE", {
+        autoClose: 1500,
+      });  
       setTimeout(() => {
         navigate("/");
       }, 2000);
