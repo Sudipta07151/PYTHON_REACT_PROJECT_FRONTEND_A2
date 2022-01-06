@@ -4,11 +4,15 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { useSignUp } from "../hooks/useSignUp";
+
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [ree_password, setReePassword] = useState("");
   const [user, setUser] = useState("");
+
+  const { signUp, isPending, error, response } = useSignUp();
 
   const navigate = useNavigate();
 
@@ -38,32 +42,37 @@ export default function Register() {
       setUser("");
       setEmail("");
       setPassword("");
-      const options = {
-        url: "http://127.0.0.1:8000/adduser/",
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        data: {
-          username: user,
-          email: email,
-          password: password,
-        },
-      };
 
-      axios(options).then((response) => {
-        console.log(response.status);
-        toast("DONE", {
-          autoClose: 1500,
-        });
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+      // const options = {
+      //   url: "http://127.0.0.1:8000/adduser/",
+      //   method: "POST",
+      //   headers: {
+      //     Accept: "application/json",
+      //     "Content-Type": "application/json;charset=UTF-8",
+      //   },
+      //   data: {
+      //     username: user,
+      //     email: email,
+      //     password: password,
+      //   },
+      // };
+
+      // axios(options).then((response) => {
+      //   console.log(response.status);
+      //   toast("DONE", {
+      //     autoClose: 1500,
+      //   });
+      //   setTimeout(() => {
+      //     navigate("/");
+      //   }, 2000);
+      // });
+      signUp("http://127.0.0.1:8000/adduser/", {
+        username: user,
+        email: email,
+        password: password,
       });
-      console.log(data);
     } else {
-      toast("FAILED", {
+      toast("confirm password didn't match", {
         autoClose: 1500,
       });
     }
@@ -71,6 +80,10 @@ export default function Register() {
 
   return (
     <>
+      {isPending &&
+        (response.data.response == "successfully registered"
+          ? toast("successfully registered")
+          : toast("ERROR"))}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 h-screen">
         <div className="max-w-lg w-full space-y-8 h-1/2 flex flex-col items-center justify-evenly">
           <div>
