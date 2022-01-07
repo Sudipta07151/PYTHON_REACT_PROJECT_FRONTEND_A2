@@ -4,6 +4,8 @@ import axiosInstance from "../functions/axios";
 
 import { useAuthContext } from "../hooks/useAuthContext";
 
+import { toast } from "react-toastify";
+
 import { useNavigate } from "react-router-dom";
 
 export const useLogin = () => {
@@ -29,12 +31,20 @@ export const useLogin = () => {
         dispatch({ type: "LOGIN", payload: user });
         setResponse(response.data.access);
         setIsPending(false);
-        navigate("/");
+        toast("DONE", {
+              autoClose: 1500,
+            });
+          setTimeout(()=>{
+            navigate("/");
+          },2000);
       }
     } catch (err) {
       console.log(err);
       setIsPending(false);
       setError(err);
+      toast("ERROR", {
+        autoClose: 1500,
+      });
     }
   };
 

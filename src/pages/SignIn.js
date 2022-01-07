@@ -34,37 +34,7 @@ export default function SignIn() {
     };
     setEmail("");
     setPassword("");
-
-    // const options = {
-    //   url,
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json;charset=UTF-8",
-    //   },
-    //   data: {
-    //     email: email,
-    //     password: password,
-    //   },
-    // };
-
-    // axios(options).then((response) => {
-    //   console.log(response.status);
-    //   toast("DONE", {
-    //     autoClose: 1500,
-    //   });
-    //   setTimeout(() => {
-    //     navigate("/");
-    //   }, 2000);
-    // });
-
-    // const response=await postData(url,data);
-    // console.log(response);
-    // console.log(data);
-    // const user=jwt_decode(localStorage.getItem('access_token'));
-    // dispatch({type:'LOGIN',payload:user})
-    // navigate('/');
-
+    
     login(data);
   };
 
