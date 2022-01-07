@@ -4,6 +4,8 @@ import axios from "axios";
 
 import AddSnippet from "../components/AddSnippet";
 
+import { useAuthContext } from "../hooks/useAuthContext";
+
 export default function AddNew() {
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
@@ -13,6 +15,8 @@ export default function AddNew() {
   const [description, setDescription] = useState("");
 
   const navigate = useNavigate();
+
+  const context=useAuthContext();
 
   const resetForm = (event) => {
     setName("");
@@ -37,7 +41,7 @@ export default function AddNew() {
       description,
       codeSnippet,
       // id: Math.floor(Math.random() * 5) + 1,
-      id: 23,
+      id: context.user.user_id,
     };
     const options = {
       url: "http://127.0.0.1:8000/addmodel/",
@@ -45,11 +49,11 @@ export default function AddNew() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
-        //"Authorization":"JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQxMTQ1Mzc5LCJpYXQiOjE2NDExNDUwNzksImp0aSI6ImE1ZjNjMTNiZTg5NTRkNzE4YzNhYWRkMzc4NDM1NDc5IiwidXNlcl9pZCI6MjR9.F2BwLAcheyQovM0Slta9UzCWoEzEQxrXIrl6cR"
+        "Authorization": localStorage.getItem('access_token')?"JWT "+localStorage.getItem('access_token'):null
       },
       data: {
         // user: Math.floor(Math.random() * 5) + 1,
-        user:24,
+        user:context.user.user_id,
         title: title,
         code: code,
         snippet: codeSnippet,

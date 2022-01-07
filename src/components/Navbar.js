@@ -1,4 +1,4 @@
-import { useRef,useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { NavLink } from "react-router-dom";
@@ -8,7 +8,7 @@ import AvatarMenu from "./AvatarMenu";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function Navbar() {
-  const { user } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
 
   const navigate = useNavigate();
   const handleClickToHome = () => {
@@ -22,7 +22,7 @@ export default function Navbar() {
       side_drawer.current.classList.add("hidden");
     }
   };
-  
+
   const signHandle = () => {
     handleClick();
     navigate("/login");
@@ -31,6 +31,13 @@ export default function Navbar() {
   const registerHandle = () => {
     handleClick();
     navigate("/register");
+  };
+
+  const logoutHandle = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    dispatch({ type: "LOGOUT", payload: null });
+    navigate("/");
   };
 
   return (
@@ -140,7 +147,7 @@ export default function Navbar() {
             </>
           )}
           {user && (
-            <button className="login_signup" onClick={signHandle}>
+            <button className="logout_signup" onClick={logoutHandle}>
               LOGOUT
             </button>
           )}
@@ -169,15 +176,24 @@ export default function Navbar() {
             </NavLink>
           </nav>
           <div className="flex flex-row justify-center items-center basis-2/3">
-            <button className="burger_login_signup" onClick={registerHandle}>
-              SIGNUP
-            </button>
-            <button className="burger_login_signup" onClick={signHandle}>
-              LOGIN
-            </button>
-            {/* <button className="burger_login_signup" onClick={registerHandle}>
-              LOGOUT
-            </button> */}
+            {!user && (
+              <>
+                <button
+                  className="burger_login_signup"
+                  onClick={registerHandle}
+                >
+                  SIGNUP
+                </button>
+                <button className="burger_login_signup" onClick={signHandle}>
+                  LOGIN
+                </button>
+              </>
+            )}
+            {user && (
+              <button className="burger_logout_signup" onClick={logoutHandle}>
+                LOGOUT
+              </button>
+            )}
           </div>
         </div>
       </div>

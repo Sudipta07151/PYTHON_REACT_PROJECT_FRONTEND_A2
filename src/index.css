@@ -48,6 +48,14 @@ nav a.active {
  @apply bg-green-400 m-1 p-1 rounded-sm text-white font-bold hover:bg-green-500
 }
 
+.burger_logout_signup{
+  @apply bg-red-400 m-1 p-1 rounded-sm text-white font-bold hover:bg-red-500
+ }
+
 .burger_link_tabs{
   @apply text-white
+}
+
+.logout_signup{
+  @apply text-white text-xl font-thin bg-red-700 mx-2 px-2 py-1 shadow-sm shadow-red-500 hover:text-slate-100 hover:bg-red-600; 
 }

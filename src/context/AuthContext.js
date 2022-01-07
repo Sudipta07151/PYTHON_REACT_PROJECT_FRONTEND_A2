@@ -10,6 +10,11 @@ export const authReducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+      case "LOGOUT":
+        return{
+          ...state,
+          user:action.payload
+        }
     default:
       return state;
   }
@@ -27,15 +32,10 @@ export const AuthContextProvider = ({ children }) => {
     const getToken=localStorage.getItem('access_token');
     console.log('Token:',getToken);
     if(getToken){
-      const decode=jwt_decode(getToken);
-      console.log('Decoded Token:',decode);
-      dispatch('LOGIN',{
-        user:decode
-      })
+      const user = jwt_decode(getToken);
+      dispatch({ type: "LOGIN", payload: user });
     }else{
-      dispatch('LOGIN',{
-        user:null
-      })
+      dispatch({ type: "LOGIN", payload: null });
     }
   },[]);
 
