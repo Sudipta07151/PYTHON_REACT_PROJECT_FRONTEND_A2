@@ -9,6 +9,8 @@ import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import ModelDetail from "./pages/ModelDetail";
+import Profile from "./pages/Profile";
+import Mymlblogs from "./pages/Mymlblogs";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/myarticles" element={<Mymlblogs />} />
         <Route path="/model/:id" element={<ModelDetail />} />
       </Routes>
       <Footer />
