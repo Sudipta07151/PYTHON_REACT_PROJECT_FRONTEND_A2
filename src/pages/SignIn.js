@@ -1,23 +1,23 @@
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LoaderSpinner } from "../components/LoaderSpinner";
 
-import jwt_decode from "jwt-decode";
+//import jwt_decode from "jwt-decode";
 import { useLogin } from "../hooks/useLogin";
 
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
-import postData from "../functions/postData";
+//import postData from "../functions/postData";
 
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const url = "http://localhost:8000/api/token/";
+  //const navigate = useNavigate();
+  //const url = "http://localhost:8000/api/token/";
 
-  const { login, isPending, error, response } = useLogin();
+  const { login, isPending } = useLogin();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);

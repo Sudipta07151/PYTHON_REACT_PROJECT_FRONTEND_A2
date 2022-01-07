@@ -80,10 +80,10 @@ export default function Register() {
 
   return (
     <>
-      {isPending &&
+      {/* {isPending &&
         (response.data.response == "successfully registered"
           ? toast("successfully registered")
-          : toast("ERROR"))}
+          : toast("ERROR"))} */}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 h-screen">
         <div className="max-w-lg w-full space-y-8 h-1/2 flex flex-col items-center justify-evenly">
           <div>

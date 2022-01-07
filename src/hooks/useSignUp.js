@@ -30,7 +30,7 @@ export const useSignUp = () => {
       console.log(response);
       setResponse(response);
       setIsPending(false);
-      navigate('/');
+      navigate('/login');
     } catch (err) {
       console.log("ERROR: ", err);
       setIsPending(false);
