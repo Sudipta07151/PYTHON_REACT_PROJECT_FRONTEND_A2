@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { toast } from "react-toastify";
+
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
@@ -30,11 +32,15 @@ export const useSignUp = () => {
       console.log(response);
       setResponse(response);
       setIsPending(false);
-      navigate('/login');
+      toast("successfully registered",{autoClose: 1500,});
+      setTimeout(()=>{
+        navigate("/login");
+      },2000)
     } catch (err) {
       console.log("ERROR: ", err);
       setIsPending(false);
       setError(err);
+      toast("ERROR",{autoClose: 1500});
     }
   };
   return {

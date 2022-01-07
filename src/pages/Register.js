@@ -37,35 +37,12 @@ export default function Register() {
       ree_password,
       user,
     };
-    if (password === ree_password) {
+    if ((password === ree_password)&& (password!="" && ree_password!=="")) {
       setReePassword("");
       setUser("");
       setEmail("");
       setPassword("");
 
-      // const options = {
-      //   url: "http://127.0.0.1:8000/adduser/",
-      //   method: "POST",
-      //   headers: {
-      //     Accept: "application/json",
-      //     "Content-Type": "application/json;charset=UTF-8",
-      //   },
-      //   data: {
-      //     username: user,
-      //     email: email,
-      //     password: password,
-      //   },
-      // };
-
-      // axios(options).then((response) => {
-      //   console.log(response.status);
-      //   toast("DONE", {
-      //     autoClose: 1500,
-      //   });
-      //   setTimeout(() => {
-      //     navigate("/");
-      //   }, 2000);
-      // });
       signUp("http://127.0.0.1:8000/adduser/", {
         username: user,
         email: email,
@@ -80,11 +57,7 @@ export default function Register() {
 
   return (
     <>
-      {/* {isPending &&
-        (response.data.response == "successfully registered"
-          ? toast("successfully registered")
-          : toast("ERROR"))} */}
-      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 h-screen">
+          <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 h-screen">
         <div className="max-w-lg w-full space-y-8 h-1/2 flex flex-col items-center justify-evenly">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
