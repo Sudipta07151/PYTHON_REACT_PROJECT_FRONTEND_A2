@@ -62,7 +62,7 @@ export default function AvatarMenu() {
               )}
             </Menu.Item>
 
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <a
                   href="#"
@@ -74,8 +74,8 @@ export default function AvatarMenu() {
                   Settings
                 </a>
               )}
-            </Menu.Item>
-            <Menu.Item>
+            </Menu.Item> */}
+            {/* <Menu.Item>
               {({ active }) => (
                 <a
                   href="#"
@@ -87,7 +87,7 @@ export default function AvatarMenu() {
                   Sign out
                 </a>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
           </Menu.Items>
         </Transition>
       </Menu>{" "}

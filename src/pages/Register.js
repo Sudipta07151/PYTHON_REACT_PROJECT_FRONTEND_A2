@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import validator from "validator";
+
 import { useSignUp } from "../hooks/useSignUp";
 
 export default function Register() {
@@ -30,14 +32,28 @@ export default function Register() {
   const handleUserName = (e) => {
     setUser(e.target.value);
   };
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+      
+    try{
     const data = {
       email,
       password,
       ree_password,
       user,
     };
-    if ((password === ree_password)&& (password!="" && ree_password!=="")) {
+    if (password === ree_password && password != "" && ree_password !== "") {
+      if (
+        !validator.isEmail(email) ||
+        !validator.isStrongPassword(password, {
+          minLength: 6,
+          minUppercase: 1,
+          minSymbols: 1,
+        })
+      )
+      throw new Error("Provide Correct Credentials");
+
       setReePassword("");
       setUser("");
       setEmail("");
@@ -52,12 +68,16 @@ export default function Register() {
       toast("confirm password didn't match", {
         autoClose: 1500,
       });
+    }}catch(err){
+      toast(err.toString(), {
+        autoClose: 1500,
+      });
     }
   };
 
   return (
     <>
-          <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 h-screen">
+      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 h-screen">
         <div className="max-w-lg w-full space-y-8 h-1/2 flex flex-col items-center justify-evenly">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -65,7 +85,7 @@ export default function Register() {
             </h2>
           </div>
           <div className="w-full">
-            <form className="mt-8 space-y-6 w-full" action="#" method="POST">
+            <form className="mt-8 space-y-6 w-full">
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="rounded-md shadow-sm -space-y-px">
                 <div>
@@ -113,7 +133,7 @@ export default function Register() {
                     autoComplete="current-password"
                     required
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Password"
+                    placeholder="Password (Min 6 Letter: 1 UpperCase and 1 Special Character)"
                   />
                 </div>
                 <div>
@@ -125,7 +145,7 @@ export default function Register() {
                     onChange={handleReePaswords}
                     id="reenter-password"
                     name="reenter-password"
-                    type="reenter-password"
+                    type="password"
                     autoComplete="reenter-password"
                     required
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
