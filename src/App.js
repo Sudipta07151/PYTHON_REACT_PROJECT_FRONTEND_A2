@@ -11,6 +11,7 @@ import About from "./pages/About";
 import ModelDetail from "./pages/ModelDetail";
 import Profile from "./pages/Profile";
 import Mymlblogs from "./pages/Mymlblogs";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/myarticles" element={<Mymlblogs />} />
+        <Route path="/search" element={<Search/>}/>
         <Route path="/model/:id" element={<ModelDetail />} />
       </Routes>
       <Footer />

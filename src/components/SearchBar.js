@@ -1,17 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { useMLBlogsDataContext } from "../hooks/useMLBlogsDataContext";
+
 export default function Searchbar() {
   const [term, setTerm] = useState("");
   const navigate = useNavigate();
+
+  const { dispatch } = useMLBlogsDataContext();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/?q=${term}`);
+    dispatch({type:"SEARCH_DATA",payload:term});
+    navigate(`/search?q=${term}`);
   };
 
-  const cancelSearch=(e)=>{
+  const cancelSearch = (e) => {
     e.preventDefault();
     setTerm("");
-  }
+  };
 
   return (
     <div className="searchbar">
