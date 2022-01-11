@@ -12,11 +12,17 @@ import ModelDetail from "./pages/ModelDetail";
 import Profile from "./pages/Profile";
 import Mymlblogs from "./pages/Mymlblogs";
 import Search from "./pages/Search";
+import Alert from "./components/Alert";
+
+import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
+  const {user}=useAuthContext();
+
   return (
     <div className="App">
       <Navbar />
+      {!user&&<Alert/>}
       <Routes>
         <Route path="/" element={<Home />} />{" "}
         <Route path="/home" element={<Navigate replace to="/" />} />
