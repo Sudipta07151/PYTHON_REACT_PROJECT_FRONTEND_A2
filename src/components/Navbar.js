@@ -135,7 +135,7 @@ export default function Navbar() {
         </nav>
       </div>
       <div className="hidden lg:flex flex-row basis-2/12 justify-end items-center gap-2">
-        <div className="bg-white p-3 rounded-md shadow-md shadow-yellow-400 flex flex-row basis-2/3">
+        <div className="bg-white p-3 rounded-md shadow-md shadow-slate-600 flex flex-row basis-2/3">
           {!user && (
             <>
               <button className="login_signup" onClick={registerHandle}>
