@@ -71,7 +71,8 @@ export default function AddNew() {
         code: code,
         snippet: codeSnippet,
         description: description,
-        difficulty:category.value
+        difficulty:category.value,
+        author:name
       },
     };
 

@@ -24,6 +24,10 @@ export default function Cards({ element }) {
       className=" bg-green-300 overflow-hidden rounded-md p-4 shadow-md m-4 hover:bg-green-200"
     >
       <p className="text-lg font-black">{element.title.substring(0, 100)}</p>
+      <div className=" text-left font-medium flex justify-between items-center">
+        <span>Author: {element.author}</span>
+        <span>{new Date(element.data).toUTCString().split("GMT")[0]}</span>
+      </div>
       <p className=" text-left bg-white p-4 text-base font-sans font-medium">
         {element.description.substring(0, 100)}
       </p>
@@ -31,11 +35,7 @@ export default function Cards({ element }) {
         {parse(element.snippet)}
       </pre>
       {/* <span>{element.name}</span> */}
-      <span
-        className={badge_class()}
-      >
-        {element.difficulty}
-      </span>
+      <span className={badge_class()}>{element.difficulty}</span>
     </div>
   );
 }
