@@ -1,10 +1,19 @@
 import { useState } from "react";
+
+import Select from "react-select";
+
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AddSnippet from "../components/AddSnippet";
 
 import { useAuthContext } from "../hooks/useAuthContext";
+
+const categories = [
+  { value: 'Easy', label: "Easy" },
+  { value: 'Medium', label: "Medium" },
+  { value: 'Difficult', label: "Difficult" },
+];
 
 export default function AddNew() {
   const [title, setTitle] = useState("");
@@ -13,7 +22,7 @@ export default function AddNew() {
   const [code, setCode] = useState(false);
   const [codeSnippet, setCodeSnippet] = useState("");
   const [description, setDescription] = useState("");
-
+  const [category,setCategory]=useState('');
   const navigate = useNavigate();
 
   const context = useAuthContext();
@@ -25,6 +34,7 @@ export default function AddNew() {
     setCodeSnippet("");
     setDescription("");
     setCode(false);
+    setCategory('');
   };
 
   const handleSaveCodeSnippet = (data) => {
@@ -40,6 +50,7 @@ export default function AddNew() {
       code,
       description,
       codeSnippet,
+      category,
       // id: Math.floor(Math.random() * 5) + 1,
       id: context.user.user_id,
     };
@@ -60,6 +71,7 @@ export default function AddNew() {
         code: code,
         snippet: codeSnippet,
         description: description,
+        difficulty:category.value
       },
     };
 
@@ -103,6 +115,13 @@ export default function AddNew() {
             type="text"
             onChange={(event) => setDescription(event.target.value)}
             value={description}
+          />
+        </label>
+        <label>
+          <span>SELECT DIFFICULTY</span>
+          <Select 
+            onChange={(option) => setCategory(option)} 
+            options={categories} 
           />
         </label>
         <label htmlFor="title" className="w-full">
