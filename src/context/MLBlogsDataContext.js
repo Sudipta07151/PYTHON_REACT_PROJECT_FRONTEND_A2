@@ -18,7 +18,31 @@ export const dataReducer = (state, action) => {
       return {
         ...state,
         blogsdata: state.blogsdata.filter((element) => {
-          return (element.title.toLowerCase().includes(action.payload) || element.description.toLowerCase().includes(action.payload));
+          return (
+            element.title.toLowerCase().includes(action.payload) ||
+            element.description.toLowerCase().includes(action.payload)
+          );
+        }),
+      };
+    case "SEARCH_EASY":
+      return {
+        ...state,
+        blogsdata: state.blogsdata.filter((element) => {
+          return element.difficulty === action.payload;
+        }),
+      };
+    case "SEARCH_MEDIUM":
+      return {
+        ...state,
+        blogsdata: state.blogsdata.filter((element) => {
+          return element.difficulty === action.payload;
+        }),
+      };
+    case "SEARCH_DIFFICULT":
+      return {
+        ...state,
+        blogsdata: state.blogsdata.filter((element) => {
+          return element.difficulty === action.payload;
         }),
       };
     default:

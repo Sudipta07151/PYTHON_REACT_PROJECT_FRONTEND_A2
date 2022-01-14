@@ -11,17 +11,32 @@ export default function Searchbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({type:"SEARCH_DATA",payload:term});
+    dispatch({ type: "SEARCH_DATA", payload: term });
     navigate(`/search?q=${term}`);
   };
 
+  const handleEasy = (e) => {
+    e.preventDefault();
+    dispatch({ type: "SEARCH_EASY", payload: "Easy" });
+    navigate(`/search?q=easy`);
+  };
+  const handleMedium = (e) => {
+    e.preventDefault();
+    dispatch({ type: "SEARCH_MEDIUM", payload: "Medium" });
+    navigate(`/search?q=medium`);
+  };
+  const handleDifficult = (e) => {
+    e.preventDefault();
+    dispatch({ type: "SEARCH_DIFFICULT", payload: "Difficult" });
+    navigate(`/search?q=difficult`);
+  };
   const cancelSearch = (e) => {
     e.preventDefault();
     setTerm("");
   };
 
   return (
-    <div className="searchbar">
+    <div className="searchbar md:flex md:items-center md:justify-between md:w-screen md:container">
       <form className="w-full max-w-sm ">
         <div className="flex items-center py-2">
           <input
@@ -48,6 +63,34 @@ export default function Searchbar() {
           </button>
         </div>
       </form>{" "}
+      <div class="flex items-center justify-center mb-3">
+        <div
+          class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg"
+          role="group"
+        >
+          <button
+            onClick={handleEasy}
+            type="button"
+            class="rounded-l inline-block px-6 py-2.5 bg-purple-500 text-white font-medium text-xs leading-tight uppercase hover:bg-purple-600 focus:bg-purple-600 focus:outline-none focus:ring-0 active:bg-purple-400 transition duration-150 ease-in-out"
+          >
+            EASY
+          </button>
+          <button
+            onClick={handleMedium}
+            type="button"
+            class="inline-block px-6 py-2.5 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase hover:bg-yellow-400 focus:bg-yellow-600 focus:outline-none focus:ring-0 active:bg-yellow-400 transition duration-150 ease-in-out"
+          >
+            MEDIUM
+          </button>
+          <button
+            onClick={handleDifficult}
+            type="button"
+            class="rounded-r inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase hover:bg-red-400 focus:bg-red-600 focus:outline-none focus:ring-0 active:bg-red-400 transition duration-150 ease-in-out"
+          >
+            DIFFICULT
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
