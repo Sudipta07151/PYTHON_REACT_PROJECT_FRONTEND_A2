@@ -47,7 +47,7 @@ export default function Navbar() {
           className="logo_text text-4xl font-extrabold font-logofont cursor-pointer text-green-900 hover:text-green-700"
           onClick={handleClickToHome}
         >
-          BLOG ML
+          ML ALGO
         </div>
         <div className=" p-2 basis-1/12">
           <svg

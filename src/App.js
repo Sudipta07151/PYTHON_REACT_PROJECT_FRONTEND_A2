@@ -14,6 +14,7 @@ import Mymlblogs from "./pages/Mymlblogs";
 import Search from "./pages/Search";
 import Alert from "./components/Alert";
 import Edit from "./pages/Edit";
+import NotFound from "./pages/NotFound";
 
 import { useAuthContext } from "./hooks/useAuthContext";
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/model/:id" element={<ModelDetail />} />
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
       <Footer />
     </div>

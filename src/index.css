@@ -19,6 +19,19 @@ code {
     monospace;
 }
 
+body::-webkit-scrollbar {
+  width: 0.6em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgb(22, 235, 86);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(108, 240, 32);
+  outline: 1px solid rgb(76, 245, 25);
+}
+
 .background_color {
   @apply bg-lime-300;
 }
