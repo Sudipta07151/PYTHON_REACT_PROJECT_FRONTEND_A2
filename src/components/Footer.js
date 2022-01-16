@@ -278,12 +278,12 @@ export default function Footer() {
             </div>
           </div>
           <div className="text-center p-6 bg-green-500">
-            <span>© 2021 Copyright:</span>
+            <span>© 2022 Copyright:</span>
             <a
               className="text-gray-600 font-semibold"
               href="https://mdbootstrap.com/"
             >
-                ADAK LTD
+                IGNITE A2 BATCH
                 </a>
           </div>
         </footer>

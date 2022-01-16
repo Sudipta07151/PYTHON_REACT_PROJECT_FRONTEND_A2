@@ -1,9 +1,9 @@
 import parse from "html-react-parser";
 import { useNavigate } from "react-router-dom";
 
-export default function Cards({ element }) {
+export default function Cards({ element, type }) {
   const navigate = useNavigate();
-
+  console.log(type);
   const badge_class = () => {
     switch (element.difficulty) {
       case "Easy":
@@ -14,14 +14,15 @@ export default function Cards({ element }) {
         return "p-2 w-20 flex items-center justify-start text-sm px-3 bg-red-500 font-bold text-white rounded-sm mt-1";
     }
   };
+  const handleEdit = (e) => {
+    e.preventDefault();
+    console.log("EDIT BUTTON PRESSED");
+    navigate(`/edit/${element.id}`);
+  };
   return (
     <div
-      onClick={() => {
-        navigate(`/model/${element.id}`);
-        console.log(element.id);
-      }}
       key={element.id}
-      className=" bg-green-300 overflow-hidden rounded-md p-4 shadow-md m-4 hover:bg-green-200"
+      className=" bg-green-300 overflow-hidden rounded-md p-4 shadow-md m-4"
     >
       <p className="text-lg font-black">{element.title.substring(0, 100)}</p>
       <div className=" text-left font-medium flex justify-between items-center">
@@ -36,6 +37,37 @@ export default function Cards({ element }) {
       </pre>
       {/* <span>{element.name}</span> */}
       <span className={badge_class()}>{element.difficulty}</span>
+      <div className="flex flex-row items-center justify-between">
+        <button
+          className="view_button"
+          onClick={() => {
+            navigate(`/model/${element.id}`);
+            console.log(element.id);
+          }}
+        >
+          VIEW
+        </button>
+        {type === "my_blogs" ? (
+          <button onClick={handleEdit} className="edit_button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+              <path
+                fill-rule="evenodd"
+                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>EDIT</span>
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }

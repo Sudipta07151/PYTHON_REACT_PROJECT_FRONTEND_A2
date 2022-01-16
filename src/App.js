@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes,Navigate  } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -13,16 +13,17 @@ import Profile from "./pages/Profile";
 import Mymlblogs from "./pages/Mymlblogs";
 import Search from "./pages/Search";
 import Alert from "./components/Alert";
+import Edit from "./pages/Edit";
 
 import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
-  const {user}=useAuthContext();
+  const { user } = useAuthContext();
 
   return (
     <div className="App">
       <Navbar />
-      {!user&&<Alert/>}
+      {!user && <Alert />}
       <Routes>
         <Route path="/" element={<Home />} />{" "}
         <Route path="/home" element={<Navigate replace to="/" />} />
@@ -32,7 +33,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/myarticles" element={<Mymlblogs />} />
-        <Route path="/search" element={<Search/>}/>
+        <Route path="/search" element={<Search />} />
+        <Route path="/edit/:id" element={<Edit />} />
         <Route path="/model/:id" element={<ModelDetail />} />
       </Routes>
       <Footer />

@@ -35,7 +35,7 @@ export default function About() {
         <div>
           <input
             onChange={onFileChange}
-            className=" bg-zinc-600 text-white font-bold"
+            className=" bg-green-800 text-white font-bold"
             type="file"
             accept="application/pdf"
           />
@@ -57,16 +57,17 @@ export default function About() {
             return (
               <div
                 key={items.id}
-                className=" bg-purple-300 overflow-hidden rounded-md p-4 shadow-md m-4 flex flex-row items-center justify-evenly font-mono"
+                className=" bg-green-300 overflow-hidden rounded-md p-4 shadow-md m-4 flex flex-row items-center justify-evenly font-mono"
               >
                 <p>{items.name}</p>
-                <span className="bg-green-400 m-1 p-2 hover:text-white font-thin">
+                <span className="bg-green-500 m-1 p-2 hover:text-white font-thin">
                   <a
                     href={
                       "https://mlblogspdfadd.s3.amazonaws.com/" + items.filename
                     }
                     target="_blank"
                     rel="noopener noreferrer"
+                    className=" text-white hover:bg-green-600"
                   >
                     DOWNLOAD
                   </a>

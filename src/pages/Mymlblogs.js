@@ -27,7 +27,7 @@ export default function Mymlblogs() {
       {!data && (
         <p className=" font-sans font-light text-xl">Algorithms and Code</p>
       )}
-      {data && <Cardlist data={data} />}
+      {data && <Cardlist data={data} type="my_blogs"/>}
     </div>
   );
 }
