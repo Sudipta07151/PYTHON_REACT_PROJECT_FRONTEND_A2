@@ -68,7 +68,6 @@ export default function Edit() {
       description,
       codeSnippet,
       category,
-      // id: Math.floor(Math.random() * 5) + 1,
       id: context.user.user_id,
     };
     const options = {
@@ -82,7 +81,6 @@ export default function Edit() {
           : null,
       },
       data: {
-        // user: Math.floor(Math.random() * 5) + 1,
         user: context.user.user_id,
         title: title,
         code: code,
@@ -135,14 +133,15 @@ export default function Edit() {
             value={description}
           />
         </label>
-        <label>
+        <label className=" z-50">
           <span>SELECT DIFFICULTY</span>
           <Select
+            value={categories.filter(item=>item.value==category)}
             onChange={(option) => setCategory(option)}
             options={categories}
           />
         </label>
-        <label htmlFor="title" className="w-full">
+        {/* <label htmlFor="title" className="w-full">
           <span>Date Added </span>
           <input
             type="date"
@@ -150,10 +149,11 @@ export default function Edit() {
             value={date}
             className="w-2/4 border-4 border-green-500"
           />
-        </label>
+        </label> */}
         <label>
           <span>Code Available </span>
           <select
+            value={code}
             onChange={(e) => {
               setCode((val) => !val);
             }}

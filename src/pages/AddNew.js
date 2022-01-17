@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
 import Select from "react-select";
 
 import { useNavigate } from "react-router-dom";
@@ -10,9 +14,9 @@ import AddSnippet from "../components/AddSnippet";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const categories = [
-  { value: 'Easy', label: "Easy" },
-  { value: 'Medium', label: "Medium" },
-  { value: 'Difficult', label: "Difficult" },
+  { value: "Easy", label: "Easy" },
+  { value: "Medium", label: "Medium" },
+  { value: "Difficult", label: "Difficult" },
 ];
 
 export default function AddNew() {
@@ -22,7 +26,7 @@ export default function AddNew() {
   const [code, setCode] = useState(false);
   const [codeSnippet, setCodeSnippet] = useState("");
   const [description, setDescription] = useState("");
-  const [category,setCategory]=useState('');
+  const [category, setCategory] = useState("");
   const navigate = useNavigate();
 
   const context = useAuthContext();
@@ -34,7 +38,7 @@ export default function AddNew() {
     setCodeSnippet("");
     setDescription("");
     setCode(false);
-    setCategory('');
+    setCategory("");
   };
 
   const handleSaveCodeSnippet = (data) => {
@@ -43,6 +47,17 @@ export default function AddNew() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (
+      title == "" ||
+      code == "" ||
+      codeSnippet == "" ||
+      description == "" ||
+      category.value == "" ||
+      name == ""
+    ) {
+      toast("ERROR: FILL IN ALL THE FIELDS",{autoClose: 1500,});
+      return;
+    }
     const formData = {
       title,
       name,
@@ -51,7 +66,6 @@ export default function AddNew() {
       description,
       codeSnippet,
       category,
-      // id: Math.floor(Math.random() * 5) + 1,
       id: context.user.user_id,
     };
     const options = {
@@ -65,19 +79,19 @@ export default function AddNew() {
           : null,
       },
       data: {
-        // user: Math.floor(Math.random() * 5) + 1,
         user: context.user.user_id,
         title: title,
         code: code,
         snippet: codeSnippet,
         description: description,
-        difficulty:category.value,
-        author:name
+        difficulty: category.value,
+        author: name,
       },
     };
 
     axios(options).then((response) => {
       console.log(response.status);
+      toast("successfully added",{autoClose: 1500,});
       setTimeout(() => {
         navigate("/");
       }, 2000);
@@ -98,6 +112,7 @@ export default function AddNew() {
             type="text"
             onChange={(event) => setTitle(event.target.value)}
             value={title}
+            required
           />
         </label>
         <label className="w-full">
@@ -107,6 +122,7 @@ export default function AddNew() {
             type="text"
             onChange={(event) => setName(event.target.value)}
             value={name}
+            required
           />
         </label>
         <label className="w-full">
@@ -116,24 +132,26 @@ export default function AddNew() {
             type="text"
             onChange={(event) => setDescription(event.target.value)}
             value={description}
+            required
           />
         </label>
         <label>
           <span>SELECT DIFFICULTY</span>
-          <Select 
-            onChange={(option) => setCategory(option)} 
-            options={categories} 
+          <Select
+            onChange={(option) => setCategory(option)}
+            options={categories}
           />
         </label>
-        <label htmlFor="title" className="w-full">
+        {/* <label htmlFor="title" className="w-full">
           <span>Date Added </span>
           <input
             type="date"
             onChange={(event) => setDate(event.target.value)}
             value={date}
             className="w-2/4 border-4 border-green-500"
+            required
           />
-        </label>
+        </label> */}
         <label>
           <span>Code Available </span>
           <select
@@ -172,6 +190,7 @@ export default function AddNew() {
           </button>
         )}
       </form>
+      <ToastContainer />
     </div>
   );
 }
