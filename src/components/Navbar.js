@@ -134,6 +134,23 @@ export default function Navbar() {
               />
             </svg>
           </NavLink>
+          <NavLink to="webide" className="link_tabs">
+            WEB PY COMPILER
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+              />
+            </svg>
+          </NavLink>
         </nav>
       </div>
       <div className="hidden lg:flex flex-row basis-2/12 justify-end items-center gap-2">
@@ -175,6 +192,9 @@ export default function Navbar() {
             </NavLink>
             <NavLink to="about" className="burger_link_tabs">
               ADD DOCS
+            </NavLink>
+            <NavLink to="webide" className="burger_link_tabs">
+              WEB PY COMPILER
             </NavLink>
           </nav>
           <div className="flex flex-row justify-center items-center basis-2/3">

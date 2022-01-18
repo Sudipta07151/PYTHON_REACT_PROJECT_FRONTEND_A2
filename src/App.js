@@ -15,6 +15,7 @@ import Search from "./pages/Search";
 import Alert from "./components/Alert";
 import Edit from "./pages/Edit";
 import NotFound from "./pages/NotFound";
+import WebIde from "./pages/WebIde";
 
 import { useAuthContext } from "./hooks/useAuthContext";
 
@@ -37,7 +38,8 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/model/:id" element={<ModelDetail />} />
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="/webide/" element={<WebIde />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>

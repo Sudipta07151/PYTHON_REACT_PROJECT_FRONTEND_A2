@@ -80,3 +80,4 @@ nav a.active {
 .view_button {
   @apply p-2 w-20 flex items-center justify-start text-sm px-3 bg-neutral-200 hover:bg-neutral-300 font-bold text-neutral-700 rounded-sm mt-1;
 }
+

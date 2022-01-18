@@ -8,8 +8,6 @@ import { LoaderSpinner } from "../components/LoaderSpinner";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
-
-
 export default function About() {
   const [file, setFile] = useState(null);
   const { isPending, postPdf } = usePostPdf();
@@ -47,7 +45,11 @@ export default function About() {
           SUBMIT
         </button>
       </div>
-      {isPending && <LoaderSpinner />}
+      {isPending && (
+        <div className=" flex flex-row items-center justify-center">
+          <LoaderSpinner />
+        </div>
+      )}
       {!isPending && data && (
         <div className="mt-10 w-screen ">
           <p className="mb-2 font-mono font-extrabold text-green-900">
