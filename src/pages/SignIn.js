@@ -10,7 +10,6 @@ import { useLogin } from "../hooks/useLogin";
 
 //import postData from "../functions/postData";
 
-
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +25,6 @@ export default function SignIn() {
     setPassword(e.target.value);
   };
 
-
   const handleSubmit = async () => {
     const data = {
       email,
@@ -34,7 +32,7 @@ export default function SignIn() {
     };
     setEmail("");
     setPassword("");
-    
+
     login(data);
   };
 
@@ -50,6 +48,10 @@ export default function SignIn() {
                   Sign in to your account
                 </h2>
               </div>
+
+              <h2 className="mt-6 text-left text-xs font-extrabold text-red-700">
+                Add fields are mandatory*
+              </h2>
               <div className="w-full">
                 <form
                   className="mt-8 space-y-6 w-full"

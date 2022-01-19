@@ -34,41 +34,52 @@ export default function Register() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-      
-    try{
-    const data = {
-      email,
-      password,
-      ree_password,
-      user,
-    };
-    if (password === ree_password && password != "" && ree_password !== "") {
+
+    try {
+      const data = {
+        email,
+        password,
+        ree_password,
+        user,
+      };
       if (
-        !validator.isEmail(email) ||
-        !validator.isStrongPassword(password, {
-          minLength: 6,
-          minUppercase: 1,
-          minSymbols: 1,
-        })
-      )
-      throw new Error("Provide Correct Credentials");
+        password === ree_password &&
+        password != "" &&
+        ree_password !== "" &&
+        user != ""
+      ) {
+        if (
+          !validator.isEmail(email) ||
+          !validator.isStrongPassword(password, {
+            minLength: 6,
+            minUppercase: 1,
+            minSymbols: 1,
+          })
+        )
+          throw new Error("Provide Correct Credentials");
 
-      setReePassword("");
-      setUser("");
-      setEmail("");
-      setPassword("");
+        setReePassword("");
+        setUser("");
+        setEmail("");
+        setPassword("");
 
-      signUp("http://127.0.0.1:8000/adduser/", {
-        username: user,
-        email: email,
-        password: password,
-      });
-    } else {
-      toast("confirm password didn't match", {
-        autoClose: 1500,
-      });
-    }}catch(err){
+        signUp("http://127.0.0.1:8000/adduser/", {
+          username: user,
+          email: email,
+          password: password,
+        });
+      } else {
+        if (user == "") {
+          toast("No username provided", {
+            autoClose: 1500,
+          });
+        } else {
+          toast("confirm password didn't match", {
+            autoClose: 1500,
+          });
+        }
+      }
+    } catch (err) {
       toast(err.toString(), {
         autoClose: 1500,
       });
@@ -84,6 +95,9 @@ export default function Register() {
               Register account
             </h2>
           </div>
+          <h2 className="mt-6 text-left text-xs font-extrabold text-red-700">
+            Add fields are mandatory*
+          </h2>
           <div className="w-full">
             <form className="mt-8 space-y-6 w-full">
               <input type="hidden" name="remember" defaultValue="true" />

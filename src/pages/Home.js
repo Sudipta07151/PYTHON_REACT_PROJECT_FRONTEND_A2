@@ -26,7 +26,7 @@ export default function Home() {
       {!data && (
         <>
           <h1 className=" text-4xl lg:text-8xl md:text-6xl font-homebody">
-            ML ALGO
+            ML SNIPS
           </h1>
         </>
       )}

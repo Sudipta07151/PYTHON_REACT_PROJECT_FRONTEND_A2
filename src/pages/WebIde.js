@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { LoaderSpinner } from "../components/LoaderSpinner";
 
@@ -6,6 +6,27 @@ export default function WebIde() {
   const [code, setCode] = useState("");
   const [output, setOutput] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("code") != undefined) {
+      const code = localStorage.getItem("code");
+      setCode(code);
+      console.log(code);
+    }
+  }, []);
+
+  const handleSetCodeToLocalStorage = () => {
+    localStorage.setItem("code", code);
+  };
+
+  const handleClearCode = () => {
+    localStorage.removeItem("code");
+    setCode("");
+  };
+
+  const handleClearOutput = () => {
+    setOutput("");
+  };
 
   const handleRunCode = async (e) => {
     // console.log(code);
@@ -26,13 +47,12 @@ export default function WebIde() {
     setLoading(false);
     // setOutput("OUTPUT: " + res.output + "\n" + "Time Taken: " + res.cpuTime);
     setOutput(response.data[0]);
-
-};
+  };
   return (
     <div className=" mt-28">
       <p className=" font-bold text-4xl">CODE</p>
       <textarea
-        className="inline-block align-top border-4 border-green-500 w-2/3 break-words resize-none font-mono p-2 bg-green-100"
+        className="inline-block align-top border-4 border-neutral-800 w-2/3 break-words resize-none font-mono p-2 bg-neutral-100"
         rows={20}
         value={code}
         onChange={(e) => setCode(e.target.value)}
@@ -42,9 +62,23 @@ export default function WebIde() {
           <LoaderSpinner />
         </div>
       )}
+      <button
+        className=" bg-yellow-400 p-2 rounded-sm w-32 font-bold m-2"
+        onClick={handleClearCode}
+      >
+        CLEAR
+      </button>
+      <div>
+        <button
+          className=" bg-blue-400 p-2 rounded-sm w-32 text-white font-light mt-2"
+          onClick={handleSetCodeToLocalStorage}
+        >
+          SAVE AS DRAFT
+        </button>
+      </div>
       <div className="m-4">
         <button
-          className=" bg-slate-700 p-2 rounded-sm w-20 text-white font-bold"
+          className=" bg-green-700 p-2 rounded-sm w-32 text-white font-bold"
           onClick={handleRunCode}
         >
           RUN
@@ -56,6 +90,12 @@ export default function WebIde() {
         rows={5}
         value={output ? output : ""}
       ></textarea>
+      <button
+        className=" bg-yellow-400 p-2 rounded-sm w-32 font-bold m-2"
+        onClick={handleClearOutput}
+      >
+        CLEAR OUTPUT
+      </button>
     </div>
   );
 }
