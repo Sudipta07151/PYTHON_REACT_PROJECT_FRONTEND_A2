@@ -6,6 +6,7 @@ export default function WebIde() {
   const [code, setCode] = useState("");
   const [output, setOutput] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [dark, setDark] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem("code") != undefined) {
@@ -52,7 +53,9 @@ export default function WebIde() {
     <div className=" mt-28">
       <p className=" font-bold text-4xl">CODE</p>
       <textarea
-        className="inline-block align-top border-4 border-neutral-800 w-2/3 break-words resize-none font-mono p-2 bg-neutral-100"
+        className={`inline-block align-top border-4 border-neutral-800 w-2/3 break-words resize-none font-mono p-2 
+        ${dark ? "text-white" : "text-neutral-800"}
+        ${dark ? "bg-neutral-800" : "bg-neutral-100"}`}
         rows={20}
         value={code}
         onChange={(e) => setCode(e.target.value)}
@@ -68,6 +71,42 @@ export default function WebIde() {
       >
         CLEAR
       </button>
+      {!dark && (
+        <button onClick={() => setDark(true)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            />
+          </svg>
+        </button>
+      )}
+      {dark && (
+        <button onClick={() => setDark(false)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+            />
+          </svg>
+        </button>
+      )}
       <div>
         <button
           className=" bg-blue-400 p-2 rounded-sm w-32 text-white font-light mt-2"
